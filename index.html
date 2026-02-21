@@ -37,12 +37,7 @@
       }
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif;
@@ -69,56 +64,33 @@
       top: 0;
       z-index: 10;
     }
+    header h1 { font-size: 18px; font-weight: 600; }
+    header .date { font-size: 13px; color: var(--text-muted); }
 
-    header h1 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    header .date {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .gear-btn {
+    .header-btns { display: flex; gap: 4px; }
+    .icon-btn {
       background: none;
       border: none;
       color: var(--text-muted);
-      font-size: 24px;
+      font-size: 22px;
       padding: 8px;
       cursor: pointer;
       border-radius: 8px;
     }
-
-    .gear-btn:active { background: var(--surface-light); }
+    .icon-btn:active { background: var(--surface-light); }
 
     /* ===== SETUP VIEW ===== */
-    #setup-view {
-      justify-content: center;
-      padding: 24px;
-    }
+    #setup-view { justify-content: center; padding: 24px; }
 
     .setup-card {
       background: var(--surface);
       border-radius: var(--radius);
       padding: 28px 24px;
     }
+    .setup-card h1 { font-size: 22px; margin-bottom: 4px; }
+    .setup-card .subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
 
-    .setup-card h1 {
-      font-size: 22px;
-      margin-bottom: 4px;
-    }
-
-    .setup-card .subtitle {
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-
-    .field {
-      margin-bottom: 18px;
-    }
-
+    .field { margin-bottom: 18px; }
     .field label {
       display: block;
       font-size: 13px;
@@ -128,7 +100,6 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-
     .field input {
       width: 100%;
       padding: 14px 16px;
@@ -139,17 +110,8 @@
       font-size: 16px;
       font-family: inherit;
     }
-
-    .field input:focus {
-      outline: none;
-      border-color: var(--present);
-    }
-
-    .field .hint {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
+    .field input:focus { outline: none; border-color: var(--present); }
+    .field .hint { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
     .btn {
       width: 100%;
@@ -162,25 +124,12 @@
       cursor: pointer;
       transition: opacity 0.2s;
     }
-
     .btn:active { opacity: 0.8; }
     .btn:disabled { opacity: 0.4; cursor: default; }
-
-    .btn-primary {
-      background: var(--present);
-      color: #1a1a2e;
-    }
-
-    .btn-secondary {
-      background: var(--surface-light);
-      color: var(--text);
-      margin-top: 10px;
-    }
-
-    .btn-send {
-      background: #007aff;
-      color: white;
-    }
+    .btn-primary { background: var(--present); color: #1a1a2e; }
+    .btn-secondary { background: var(--surface-light); color: var(--text); margin-top: 10px; }
+    .btn-send { background: #007aff; color: white; }
+    .btn-danger { background: var(--absent); color: white; margin-top: 10px; }
 
     .status-msg {
       text-align: center;
@@ -190,18 +139,8 @@
       margin-top: 16px;
       display: none;
     }
-
-    .status-msg.error {
-      display: block;
-      background: var(--absent-bg);
-      color: var(--absent);
-    }
-
-    .status-msg.loading {
-      display: block;
-      background: var(--present-bg);
-      color: var(--present);
-    }
+    .status-msg.error { display: block; background: var(--absent-bg); color: var(--absent); }
+    .status-msg.loading { display: block; background: var(--present-bg); color: var(--present); }
 
     /* ===== ATTENDANCE VIEW ===== */
     .runner-grid {
@@ -220,53 +159,43 @@
       padding: 14px 10px;
       text-align: center;
       transition: border-color 0.2s, background 0.2s;
+      position: relative;
     }
-
-    .runner-card.present {
-      border-color: var(--present);
-      background: var(--present-bg);
-    }
-
-    .runner-card.absent {
-      border-color: var(--absent);
-      background: var(--absent-bg);
-    }
-
-    .runner-card.absent .runner-photo {
-      opacity: 0.5;
-    }
+    .runner-card.present { border-color: var(--present); background: var(--present-bg); }
+    .runner-card.absent { border-color: var(--absent); background: var(--absent-bg); }
+    .runner-card.absent .runner-photo { opacity: 0.5; }
 
     .runner-photo {
       width: 72px;
       height: 72px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       background: var(--surface-light);
       transition: opacity 0.2s;
+      cursor: pointer;
     }
 
-    .runner-name {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
-      line-height: 1.2;
-    }
-
-    .runner-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      line-height: 1.3;
-      max-height: 28px;
-      overflow: hidden;
-    }
-
-    .card-actions {
+    /* Placeholder when no photo */
+    .photo-placeholder {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--surface-light);
+      margin: 0 auto 6px;
       display: flex;
-      gap: 8px;
+      align-items: center;
       justify-content: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      border: 2px dashed var(--neutral-border);
     }
+
+    .runner-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; line-height: 1.2; }
+    .runner-start-date { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+
+    .card-actions { display: flex; gap: 8px; justify-content: center; }
 
     .card-btn {
       width: 48px;
@@ -281,20 +210,29 @@
       justify-content: center;
       transition: all 0.15s;
     }
-
     .card-btn:active { transform: scale(0.9); }
+    .card-btn.yes-btn.selected { background: var(--present); border-color: var(--present); color: white; }
+    .card-btn.no-btn.selected { background: var(--absent); border-color: var(--absent); color: white; }
 
-    .card-btn.yes-btn.selected {
-      background: var(--present);
-      border-color: var(--present);
-      color: white;
-    }
-
-    .card-btn.no-btn.selected {
+    /* Delete button on card */
+    .delete-btn {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: none;
       background: var(--absent);
-      border-color: var(--absent);
       color: white;
+      font-size: 14px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
     }
+    .edit-mode .delete-btn { display: flex; }
 
     /* ===== FOOTER ===== */
     .footer {
@@ -305,69 +243,7 @@
       position: sticky;
       bottom: 0;
     }
-
-    .progress-text {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    /* ===== CONFIRM VIEW ===== */
-    #confirm-view {
-      padding: 0;
-    }
-
-    .confirm-content {
-      padding: 20px;
-      flex: 1;
-    }
-
-    .confirm-section {
-      margin-bottom: 20px;
-    }
-
-    .confirm-section h3 {
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
-      color: var(--text-muted);
-    }
-
-    .confirm-section h3.present-label { color: var(--present); }
-    .confirm-section h3.absent-label { color: var(--absent); }
-
-    .confirm-list {
-      list-style: none;
-    }
-
-    .confirm-list li {
-      padding: 8px 0;
-      font-size: 16px;
-      border-bottom: 1px solid var(--neutral-border);
-    }
-
-    .confirm-list li:last-child { border-bottom: none; }
-
-    .confirm-buttons {
-      padding: 16px 20px;
-      padding-bottom: calc(16px + env(safe-area-inset-bottom));
-      background: var(--surface);
-      border-top: 1px solid var(--neutral-border);
-    }
-
-    /* ===== EMPTY STATE ===== */
-    .empty-state {
-      text-align: center;
-      padding: 60px 24px;
-      color: var(--text-muted);
-    }
-
-    .empty-state p {
-      font-size: 16px;
-      margin-bottom: 16px;
-    }
+    .progress-text { text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
 
     /* ===== MARK ALL BAR ===== */
     .mark-all-bar {
@@ -377,7 +253,6 @@
       background: var(--surface);
       border-bottom: 1px solid var(--neutral-border);
     }
-
     .mark-all-btn {
       flex: 1;
       padding: 10px;
@@ -390,8 +265,75 @@
       font-family: inherit;
       cursor: pointer;
     }
-
     .mark-all-btn:active { opacity: 0.7; }
+
+    /* ===== CONFIRM VIEW ===== */
+    #confirm-view { padding: 0; }
+    .confirm-content { padding: 20px; flex: 1; }
+    .confirm-section { margin-bottom: 20px; }
+    .confirm-section h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+    .confirm-section h3.present-label { color: var(--present); }
+    .confirm-section h3.absent-label { color: var(--absent); }
+    .confirm-list { list-style: none; }
+    .confirm-list li { padding: 8px 0; font-size: 16px; border-bottom: 1px solid var(--neutral-border); }
+    .confirm-list li:last-child { border-bottom: none; }
+    .confirm-buttons {
+      padding: 16px 20px;
+      padding-bottom: calc(16px + env(safe-area-inset-bottom));
+      background: var(--surface);
+      border-top: 1px solid var(--neutral-border);
+    }
+
+    /* ===== ADD MEMBER VIEW ===== */
+    .add-photo-area {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px dashed var(--neutral-border);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .add-photo-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .add-photo-area .placeholder-text {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 10px;
+    }
+
+    /* Hidden file input */
+    .hidden-input { display: none; }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state { text-align: center; padding: 60px 24px; color: var(--text-muted); }
+    .empty-state p { font-size: 16px; margin-bottom: 16px; }
+
+    /* ===== EDIT MODE BANNER ===== */
+    .edit-banner {
+      background: var(--absent-bg);
+      color: var(--absent);
+      text-align: center;
+      padding: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+    }
+    .edit-mode .edit-banner { display: block; }
   </style>
 </head>
 <body>
@@ -411,7 +353,7 @@
       <div class="field">
         <label>Slack Channel ID</label>
         <input type="text" id="input-channel" placeholder="C0XXXXXXX" autocomplete="off">
-        <p class="hint">Channel with "Please welcome" posts. Right-click > View details > ID at bottom</p>
+        <p class="hint">Channel with "Please welcome" posts</p>
       </div>
 
       <div class="field">
@@ -421,7 +363,13 @@
       </div>
 
       <button class="btn btn-primary" id="btn-connect" onclick="connectAndLoad()">
-        Connect &amp; Load Roster
+        Connect &amp; Load Names from Slack
+      </button>
+
+      <div style="text-align: center; color: var(--text-muted); margin: 16px 0 8px; font-size: 13px;">— or —</div>
+
+      <button class="btn btn-secondary" onclick="skipSlackSetup()" style="margin-top: 0;">
+        Skip Slack — Add Members Manually
       </button>
 
       <div class="status-msg" id="setup-status"></div>
@@ -435,8 +383,14 @@
         <h1>Wednesday Run</h1>
         <div class="date" id="run-date"></div>
       </div>
-      <button class="gear-btn" onclick="showSettings()" aria-label="Settings">&#9881;</button>
+      <div class="header-btns">
+        <button class="icon-btn" onclick="showAddMember()" aria-label="Add member" title="Add member">+</button>
+        <button class="icon-btn" id="edit-toggle-btn" onclick="toggleEditMode()" aria-label="Edit roster" title="Edit roster">&#9998;</button>
+        <button class="icon-btn" onclick="showSettings()" aria-label="Settings" title="Settings">&#9881;</button>
+      </div>
     </header>
+
+    <div class="edit-banner">EDIT MODE — tap ✕ on a card to remove. Tap ✏ again to exit.</div>
 
     <div class="mark-all-bar">
       <button class="mark-all-btn" onclick="markAll('present')">All Present</button>
@@ -462,16 +416,41 @@
         <div class="date" id="confirm-date"></div>
       </div>
     </header>
-
     <div class="confirm-content" id="confirm-content"></div>
-
     <div class="confirm-buttons">
       <button class="btn btn-send" onclick="sendViaIMessage()">Send via iMessage</button>
       <button class="btn btn-secondary" onclick="showView('attendance-view')">Back</button>
     </div>
   </div>
 
-  <!-- ===== SETTINGS OVERLAY ===== -->
+  <!-- ===== ADD MEMBER VIEW ===== -->
+  <div id="add-member-view" class="view">
+    <header>
+      <div><h1>Add Member</h1></div>
+      <button class="icon-btn" onclick="showView('attendance-view')">✕</button>
+    </header>
+    <div style="padding: 24px; flex: 1;">
+      <div class="add-photo-area" id="add-photo-area" onclick="document.getElementById('photo-file-input').click()">
+        <div class="placeholder-text" id="add-photo-placeholder">Tap to add photo</div>
+      </div>
+      <input type="file" accept="image/*" class="hidden-input" id="photo-file-input" onchange="handlePhotoSelect(event)">
+
+      <div class="field">
+        <label>Name</label>
+        <input type="text" id="add-name" placeholder="First and last name" autocapitalize="words">
+      </div>
+
+      <div class="field">
+        <label>Start Date (optional)</label>
+        <input type="date" id="add-start-date">
+      </div>
+
+      <button class="btn btn-primary" onclick="addMember()">Add to Roster</button>
+      <div class="status-msg" id="add-status"></div>
+    </div>
+  </div>
+
+  <!-- ===== SETTINGS VIEW ===== -->
   <div id="settings-view" class="view">
     <div class="setup-card" style="margin: 24px; margin-top: calc(24px + env(safe-area-inset-top));">
       <h1>Settings</h1>
@@ -481,21 +460,18 @@
         <label>Slack Bot Token</label>
         <input type="password" id="settings-token" placeholder="xoxb-..." autocomplete="off">
       </div>
-
       <div class="field">
         <label>Slack Channel ID</label>
         <input type="text" id="settings-channel" placeholder="C0XXXXXXX" autocomplete="off">
       </div>
-
       <div class="field">
         <label>Program Director's Phone</label>
         <input type="tel" id="settings-phone" placeholder="+1XXXXXXXXXX">
       </div>
 
-      <button class="btn btn-primary" onclick="refreshRoster()">Refresh Roster from Slack</button>
+      <button class="btn btn-primary" onclick="refreshRoster()">Refresh Names from Slack</button>
       <button class="btn btn-secondary" onclick="saveSettingsAndClose()">Save &amp; Close</button>
       <button class="btn btn-secondary" onclick="showView('attendance-view')" style="margin-top: 4px;">Cancel</button>
-
       <div class="status-msg" id="settings-status"></div>
     </div>
   </div>
@@ -505,17 +481,18 @@
 // ===== STATE =====
 let runners = [];
 let config = {};
+let editMode = false;
+let pendingPhotoBase64 = '';
 
 // ===== INIT =====
 function initApp() {
   config = JSON.parse(localStorage.getItem('bomf_config') || '{}');
   const roster = JSON.parse(localStorage.getItem('bomf_roster') || '{}');
 
-  if (config.token && config.channel && roster.runners && roster.runners.length > 0) {
+  if (roster.runners && roster.runners.length > 0) {
     runners = roster.runners.map(r => ({ ...r, status: null }));
     showAttendanceView();
   } else if (config.token) {
-    // Has config but no roster — show setup with values pre-filled
     document.getElementById('input-token').value = config.token || '';
     document.getElementById('input-channel').value = config.channel || '';
     document.getElementById('input-phone').value = config.phone || '';
@@ -536,6 +513,8 @@ function showAttendanceView() {
     weekday: 'long', month: 'short', day: 'numeric', year: 'numeric'
   });
   document.getElementById('run-date').textContent = today;
+  editMode = false;
+  document.getElementById('attendance-view').classList.remove('edit-mode');
   renderCards();
   showView('attendance-view');
 }
@@ -557,6 +536,26 @@ function saveSettingsAndClose() {
   showView('attendance-view');
 }
 
+function showAddMember() {
+  pendingPhotoBase64 = '';
+  document.getElementById('add-name').value = '';
+  document.getElementById('add-start-date').value = '';
+  document.getElementById('add-photo-placeholder').textContent = 'Tap to add photo';
+  document.getElementById('add-photo-area').innerHTML = '<div class="placeholder-text" id="add-photo-placeholder">Tap to add photo</div>';
+  document.getElementById('add-status').className = 'status-msg';
+  showView('add-member-view');
+}
+
+function skipSlackSetup() {
+  // Save just the phone number, skip Slack config
+  config.phone = document.getElementById('input-phone').value.trim();
+  localStorage.setItem('bomf_config', JSON.stringify(config));
+  // Initialize empty roster
+  runners = [];
+  saveRoster();
+  showAttendanceView();
+}
+
 // ===== SLACK API =====
 async function slackPost(method, params) {
   const body = new URLSearchParams({ token: config.token, ...params });
@@ -572,16 +571,13 @@ async function fetchRoster(statusEl) {
   statusEl.className = 'status-msg loading';
   statusEl.textContent = 'Reading channel messages...';
 
-  // We read messages from the channel looking for "Please welcome" posts
-  // that contain a member's name and attached photo.
-  // Only look at the last year of posts (program is 1 year long).
+  // Read messages looking for "Please welcome" posts (last year only)
   const oneYearAgo = Math.floor(Date.now() / 1000) - (365 * 24 * 60 * 60);
 
   const rosterData = [];
   let cursor = undefined;
   let pageNum = 0;
 
-  // Paginate through channel history
   while (true) {
     pageNum++;
     statusEl.textContent = `Reading messages (page ${pageNum})...`;
@@ -601,54 +597,28 @@ async function fetchRoster(statusEl) {
     const messages = histResp.messages || [];
 
     for (const msg of messages) {
-      // Look for "Please welcome" pattern in the message text
       const text = msg.text || '';
       const welcomeMatch = text.match(/[Pp]lease\s+[Ww]elcome\s+(.+?)[\s]*[.!,\n\r]/);
       if (!welcomeMatch) continue;
 
-      // Extract the name — clean up any Slack formatting
       let name = welcomeMatch[1].trim();
-      // Remove Slack bold markers, links, etc.
       name = name.replace(/[*_~`]/g, '').trim();
-      // Remove "to the team" or similar trailing phrases
       name = name.replace(/\s+to\s+(the|our|BoMF|Back on My Feet).*/i, '').trim();
-
       if (!name || name.length < 2) continue;
 
-      // Look for an attached photo (image file)
-      let photoDataUrl = '';
-      const files = msg.files || [];
-      const imageFile = files.find(f =>
-        f.mimetype && f.mimetype.startsWith('image/')
-      );
-
-      if (imageFile) {
-        const photoUrl = imageFile.thumb_360 || imageFile.thumb_160 || imageFile.url_private || '';
-        if (photoUrl) {
-          photoDataUrl = getSlackImageUrl(photoUrl);
-        }
-      }
-
-      // Also capture the description (rest of the message after the name)
-      let description = '';
-      const afterName = text.substring(text.indexOf(name) + name.length);
-      if (afterName) {
-        description = afterName.replace(/^[\s.!,\-–—:]+/, '').trim();
-        // Keep just the first sentence or two
-        const sentences = description.split(/[.!]\s/);
-        description = sentences.slice(0, 2).join('. ').trim();
-        if (description && !description.endsWith('.')) description += '.';
-      }
+      // Extract start date from the message timestamp
+      const msgDate = new Date(parseFloat(msg.ts) * 1000);
+      const startDate = msgDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
       rosterData.push({
+        id: 'slack_' + msg.ts,
         name: name,
-        photoDataUrl: photoDataUrl,
-        description: description,
-        messageTs: msg.ts  // timestamp for deduplication
+        photoDataUrl: '',  // No photo from Slack — user will add manually
+        startDate: startDate,
+        messageTs: msg.ts
       });
     }
 
-    // Check if there are more pages
     if (histResp.has_more && histResp.response_metadata && histResp.response_metadata.next_cursor) {
       cursor = histResp.response_metadata.next_cursor;
     } else {
@@ -656,7 +626,7 @@ async function fetchRoster(statusEl) {
     }
   }
 
-  // Deduplicate by name (keep the most recent post for each person)
+  // Deduplicate by name (keep most recent)
   const seen = new Map();
   for (const r of rosterData) {
     const key = r.name.toLowerCase();
@@ -665,46 +635,10 @@ async function fetchRoster(statusEl) {
     }
   }
   const dedupedRoster = Array.from(seen.values());
-
-  // Sort alphabetically by first name
   dedupedRoster.sort((a, b) => a.name.localeCompare(b.name));
 
-  statusEl.textContent = `Found ${dedupedRoster.length} members!`;
-
-  // Save to localStorage
-  const roster = {
-    lastUpdated: new Date().toISOString(),
-    runners: dedupedRoster
-  };
-  localStorage.setItem('bomf_roster', JSON.stringify(roster));
-
+  statusEl.textContent = `Found ${dedupedRoster.length} members! Add photos by tapping their circles.`;
   return dedupedRoster;
-}
-
-// Get a displayable URL for a Slack-hosted image.
-// Slack file URLs are private and need auth. We append the token as a query param.
-// The <img> tag can display these without CORS issues (CORS only blocks JS fetch/canvas).
-// Note: these URLs won't work offline, but they'll display when online.
-function getSlackImageUrl(privateUrl) {
-  if (!privateUrl) return '';
-  return privateUrl + (privateUrl.includes('?') ? '&' : '?') + 'token=' + config.token;
-}
-
-function imageToBase64(url) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = 144;
-      canvas.height = 144;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, 144, 144);
-      resolve(canvas.toDataURL('image/jpeg', 0.7));
-    };
-    img.onerror = reject;
-    img.src = url;
-  });
 }
 
 // ===== CONNECT =====
@@ -728,12 +662,13 @@ async function connectAndLoad() {
   try {
     const rosterData = await fetchRoster(statusEl);
     if (rosterData.length === 0) {
-      setStatus('setup-status', 'error', 'No members found in that channel. Check the channel ID.');
+      setStatus('setup-status', 'error', 'No "Please welcome" posts found in the last year. Check channel ID.');
       btn.disabled = false;
       return;
     }
 
     runners = rosterData.map(r => ({ ...r, status: null }));
+    saveRoster();
     showAttendanceView();
   } catch (err) {
     setStatus('setup-status', 'error', 'Error: ' + err.message);
@@ -754,11 +689,35 @@ async function refreshRoster() {
       setStatus('settings-status', 'error', 'No members found. Check channel ID.');
       return;
     }
-    runners = rosterData.map(r => ({ ...r, status: null }));
-    setStatus('settings-status', 'loading', `Loaded ${runners.length} runners!`);
-    setTimeout(() => {
-      showAttendanceView();
-    }, 1000);
+
+    // Merge with existing roster — keep photos that were already added
+    const existingByName = new Map();
+    runners.forEach(r => existingByName.set(r.name.toLowerCase(), r));
+
+    const merged = rosterData.map(newR => {
+      const existing = existingByName.get(newR.name.toLowerCase());
+      if (existing && existing.photoDataUrl) {
+        newR.photoDataUrl = existing.photoDataUrl;
+      }
+      return { ...newR, status: null };
+    });
+
+    // Also keep any manually-added members not in Slack
+    runners.forEach(r => {
+      if (r.id && r.id.startsWith('manual_')) {
+        const inNew = merged.find(m => m.name.toLowerCase() === r.name.toLowerCase());
+        if (!inNew) {
+          merged.push({ ...r, status: null });
+        }
+      }
+    });
+
+    merged.sort((a, b) => a.name.localeCompare(b.name));
+    runners = merged;
+    saveRoster();
+
+    setStatus('settings-status', 'loading', `Loaded ${runners.length} members!`);
+    setTimeout(() => showAttendanceView(), 1000);
   } catch (err) {
     setStatus('settings-status', 'error', 'Error: ' + err.message);
   }
@@ -770,29 +729,165 @@ function setStatus(elId, type, msg) {
   el.textContent = msg;
 }
 
+function saveRoster() {
+  const rosterToSave = runners.map(r => ({
+    id: r.id,
+    name: r.name,
+    photoDataUrl: r.photoDataUrl || '',
+    startDate: r.startDate || ''
+  }));
+  localStorage.setItem('bomf_roster', JSON.stringify({
+    lastUpdated: new Date().toISOString(),
+    runners: rosterToSave
+  }));
+}
+
+// ===== PHOTO HANDLING =====
+function handlePhotoSelect(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    // Resize the image to save storage space
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 200;
+      canvas.height = 200;
+      const ctx = canvas.getContext('2d');
+
+      // Center crop
+      const size = Math.min(img.width, img.height);
+      const sx = (img.width - size) / 2;
+      const sy = (img.height - size) / 2;
+      ctx.drawImage(img, sx, sy, size, size, 0, 0, 200, 200);
+
+      pendingPhotoBase64 = canvas.toDataURL('image/jpeg', 0.7);
+
+      // Show preview
+      const area = document.getElementById('add-photo-area');
+      area.innerHTML = `<img src="${pendingPhotoBase64}" alt="Photo preview">`;
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleCardPhotoSelect(event, index) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 200;
+      canvas.height = 200;
+      const ctx = canvas.getContext('2d');
+
+      const size = Math.min(img.width, img.height);
+      const sx = (img.width - size) / 2;
+      const sy = (img.height - size) / 2;
+      ctx.drawImage(img, sx, sy, size, size, 0, 0, 200, 200);
+
+      runners[index].photoDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+      saveRoster();
+      renderCards();
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ===== ADD MEMBER =====
+function addMember() {
+  const name = document.getElementById('add-name').value.trim();
+  const startDate = document.getElementById('add-start-date').value;
+
+  if (!name) {
+    setStatus('add-status', 'error', 'Please enter a name.');
+    return;
+  }
+
+  // Check for duplicate
+  if (runners.find(r => r.name.toLowerCase() === name.toLowerCase())) {
+    setStatus('add-status', 'error', 'A member with this name already exists.');
+    return;
+  }
+
+  const formattedDate = startDate
+    ? new Date(startDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : '';
+
+  runners.push({
+    id: 'manual_' + Date.now(),
+    name: name,
+    photoDataUrl: pendingPhotoBase64,
+    startDate: formattedDate,
+    status: null
+  });
+
+  runners.sort((a, b) => a.name.localeCompare(b.name));
+  saveRoster();
+  showAttendanceView();
+}
+
+// ===== DELETE MEMBER =====
+function deleteMember(index) {
+  const name = runners[index].name;
+  if (confirm(`Remove ${name} from the roster?`)) {
+    runners.splice(index, 1);
+    saveRoster();
+    renderCards();
+  }
+}
+
+// ===== EDIT MODE =====
+function toggleEditMode() {
+  editMode = !editMode;
+  const view = document.getElementById('attendance-view');
+  if (editMode) {
+    view.classList.add('edit-mode');
+  } else {
+    view.classList.remove('edit-mode');
+  }
+}
+
 // ===== RENDER CARDS =====
 function renderCards() {
   const grid = document.getElementById('runner-grid');
 
   if (runners.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><p>No runners loaded yet.</p><p>Tap the gear icon to set up Slack connection.</p></div>';
+    grid.innerHTML = `<div class="empty-state" style="grid-column: 1/-1;">
+      <p>No members yet.</p>
+      <p>Tap <strong>+</strong> above to add members, or use the gear icon to load names from Slack.</p>
+    </div>`;
+    updateProgress();
     return;
   }
 
-  grid.innerHTML = runners.map((r, i) => `
+  grid.innerHTML = runners.map((r, i) => {
+    const photoHtml = r.photoDataUrl
+      ? `<img class="runner-photo" src="${r.photoDataUrl}" alt="${escapeHtml(r.name)}" onclick="document.getElementById('card-photo-${i}').click()">`
+      : `<div class="photo-placeholder" onclick="document.getElementById('card-photo-${i}').click()">Add<br>Photo</div>`;
+
+    return `
     <div class="runner-card ${r.status || ''}" id="card-${i}">
-      <img class="runner-photo" src="${r.photoDataUrl || ''}" alt="${r.name}"
-           onerror="this.style.background='var(--surface-light)'; this.alt='No photo';">
+      <button class="delete-btn" onclick="deleteMember(${i})" aria-label="Remove">✕</button>
+      ${photoHtml}
+      <input type="file" accept="image/*" class="hidden-input" id="card-photo-${i}" onchange="handleCardPhotoSelect(event, ${i})">
       <div class="runner-name">${escapeHtml(r.name)}</div>
-      <div class="runner-desc">${r.description ? escapeHtml(r.description) : ''}</div>
+      <div class="runner-start-date">${r.startDate ? 'Started ' + escapeHtml(r.startDate) : ''}</div>
       <div class="card-actions">
         <button class="card-btn yes-btn ${r.status === 'present' ? 'selected' : ''}"
                 onclick="toggleStatus(${i}, 'present')" aria-label="Present">&#10003;</button>
         <button class="card-btn no-btn ${r.status === 'absent' ? 'selected' : ''}"
                 onclick="toggleStatus(${i}, 'absent')" aria-label="Absent">&#10007;</button>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
   updateProgress();
 }
@@ -806,15 +901,8 @@ function escapeHtml(str) {
 // ===== TOGGLE STATUS =====
 function toggleStatus(index, status) {
   const runner = runners[index];
+  runner.status = (runner.status === status) ? null : status;
 
-  // If already this status, deselect
-  if (runner.status === status) {
-    runner.status = null;
-  } else {
-    runner.status = status;
-  }
-
-  // Update card UI without full re-render
   const card = document.getElementById(`card-${index}`);
   card.className = `runner-card ${runner.status || ''}`;
 
@@ -827,12 +915,8 @@ function toggleStatus(index, status) {
 }
 
 function markAll(status) {
-  runners.forEach((r, i) => {
-    if (status === 'clear') {
-      r.status = null;
-    } else {
-      r.status = status;
-    }
+  runners.forEach(r => {
+    r.status = (status === 'clear') ? null : status;
   });
   renderCards();
 }
@@ -841,7 +925,7 @@ function updateProgress() {
   const marked = runners.filter(r => r.status !== null).length;
   const total = runners.length;
   document.getElementById('progress-text').textContent = `${marked} of ${total} marked`;
-  document.getElementById('btn-send').disabled = marked < total;
+  document.getElementById('btn-send').disabled = (marked < total || total === 0);
 }
 
 // ===== CONFIRMATION =====
@@ -855,22 +939,16 @@ function showConfirmation() {
   const absent = runners.filter(r => r.status === 'absent');
 
   let html = '';
-
   if (present.length > 0) {
     html += `<div class="confirm-section">
       <h3 class="present-label">Present (${present.length})</h3>
-      <ul class="confirm-list">
-        ${present.map(r => `<li>${escapeHtml(r.name)}</li>`).join('')}
-      </ul>
+      <ul class="confirm-list">${present.map(r => `<li>${escapeHtml(r.name)}</li>`).join('')}</ul>
     </div>`;
   }
-
   if (absent.length > 0) {
     html += `<div class="confirm-section">
       <h3 class="absent-label">Absent (${absent.length})</h3>
-      <ul class="confirm-list">
-        ${absent.map(r => `<li>${escapeHtml(r.name)}</li>`).join('')}
-      </ul>
+      <ul class="confirm-list">${absent.map(r => `<li>${escapeHtml(r.name)}</li>`).join('')}</ul>
     </div>`;
   }
 
@@ -890,7 +968,6 @@ function sendViaIMessage() {
   let message = `Wednesday Run - ${date}\n\n`;
   message += `Present (${present.length}):\n`;
   present.forEach(name => { message += `- ${name}\n`; });
-
   if (absent.length > 0) {
     message += `\nAbsent (${absent.length}):\n`;
     absent.forEach(name => { message += `- ${name}\n`; });
@@ -898,8 +975,6 @@ function sendViaIMessage() {
 
   const phone = config.phone || '';
   const encoded = encodeURIComponent(message);
-
-  // iOS uses & separator (not ?) for sms: body parameter
   window.location.href = `sms:${phone}&body=${encoded}`;
 }
 
