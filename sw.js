@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bomf-attendance-v1';
+const CACHE_NAME = 'bomf-attendance-v2';
 const PRECACHE_URLS = [
   './',
   './index.html',
@@ -22,17 +22,18 @@ self.addEventListener('activate', event => {
   );
 });
 
+// Network-first strategy: try to get fresh code, fall back to cache if offline
 self.addEventListener('fetch', event => {
   if (event.request.url.includes('slack.com/api/')) {
     return;
   }
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      return cached || fetch(event.request).then(response => {
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-        return response;
-      });
+    fetch(event.request).then(response => {
+      const clone = response.clone();
+      caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+      return response;
+    }).catch(() => {
+      return caches.match(event.request);
     })
   );
 });
