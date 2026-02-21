@@ -622,13 +622,10 @@ async function fetchRoster(statusEl) {
         f.mimetype && f.mimetype.startsWith('image/')
       );
 
-      if (imageFile && imageFile.id) {
+      if (imageFile) {
         const photoUrl = imageFile.thumb_360 || imageFile.thumb_160 || imageFile.url_private || '';
-        try {
-          statusEl.textContent = `Loading photo for ${name}...`;
-          photoDataUrl = await fetchSlackImage(imageFile.id, photoUrl);
-        } catch (e) {
-          console.log('Photo fetch failed for', name, e);
+        if (photoUrl) {
+          photoDataUrl = getSlackImageUrl(photoUrl);
         }
       }
 
@@ -684,45 +681,13 @@ async function fetchRoster(statusEl) {
   return dedupedRoster;
 }
 
-// Fetch a Slack-hosted image and convert to base64 for offline caching.
-// Uses the Slack file URL with token as a query param to avoid CORS preflight.
-async function fetchSlackImage(fileId, privateUrl) {
-  // Slack private URLs accept the token as a query parameter
-  // This avoids CORS preflight issues that happen with Authorization headers
-  const authedUrl = privateUrl + (privateUrl.includes('?') ? '&' : '?') + 'token=' + config.token;
-
-  // Try loading as an <img> tag (avoids CORS fetch restrictions)
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      try {
-        const canvas = document.createElement('canvas');
-        canvas.width = 144;
-        canvas.height = 144;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, 144, 144);
-        resolve(canvas.toDataURL('image/jpeg', 0.7));
-      } catch (e) {
-        // Canvas tainted by CORS — fall back to storing the URL
-        console.log('Canvas tainted, storing URL instead');
-        resolve(authedUrl);
-      }
-    };
-    img.onerror = () => {
-      // Image failed to load — try without crossOrigin
-      const img2 = new Image();
-      img2.onload = () => {
-        // Loaded but can't convert to base64 (no CORS), store URL instead
-        resolve(authedUrl);
-      };
-      img2.onerror = () => resolve('');
-      setTimeout(() => resolve(''), 8000);
-      img2.src = authedUrl;
-    };
-    setTimeout(() => resolve(''), 10000);
-    img.src = authedUrl;
-  });
+// Get a displayable URL for a Slack-hosted image.
+// Slack file URLs are private and need auth. We append the token as a query param.
+// The <img> tag can display these without CORS issues (CORS only blocks JS fetch/canvas).
+// Note: these URLs won't work offline, but they'll display when online.
+function getSlackImageUrl(privateUrl) {
+  if (!privateUrl) return '';
+  return privateUrl + (privateUrl.includes('?') ? '&' : '?') + 'token=' + config.token;
 }
 
 function imageToBase64(url) {
