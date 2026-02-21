@@ -192,7 +192,8 @@
       border: 2px dashed var(--neutral-border);
     }
 
-    .runner-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; line-height: 1.2; }
+    .runner-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; line-height: 1.2; cursor: pointer; }
+    .runner-name:active { opacity: 0.6; }
     .runner-start-date { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
 
     .card-actions { display: flex; gap: 8px; justify-content: center; }
@@ -608,6 +609,10 @@ async function fetchRoster(statusEl) {
       let name = welcomeMatch[1].trim();
       name = name.replace(/[*_~`]/g, '').trim();
       name = name.replace(/\s+to\s+(the|our|BoMF|Back on My Feet).*/i, '').trim();
+      // Remove "new teammate" prefix and similar
+      name = name.replace(/^(our\s+)?new\s+(teammate|team\s+member|member)\s*/i, '').trim();
+      // Remove any trailing parenthetical
+      name = name.replace(/\s*\(.*$/, '').trim();
       if (!name || name.length < 2) continue;
 
       // Extract start date from the message timestamp
@@ -838,6 +843,17 @@ function addMember() {
   showAttendanceView();
 }
 
+// ===== EDIT NAME =====
+function editName(index) {
+  const runner = runners[index];
+  const newName = prompt('Edit name:', runner.name);
+  if (newName && newName.trim() && newName.trim() !== runner.name) {
+    runner.name = newName.trim();
+    saveRoster();
+    renderCards();
+  }
+}
+
 // ===== DELETE MEMBER =====
 function deleteMember(index) {
   const name = runners[index].name;
@@ -882,7 +898,7 @@ function renderCards() {
       <button class="delete-btn" onclick="deleteMember(${i})" aria-label="Remove">✕</button>
       ${photoHtml}
       <input type="file" accept="image/*" class="hidden-input" id="card-photo-${i}" onchange="handleCardPhotoSelect(event, ${i})">
-      <div class="runner-name">${escapeHtml(r.name)}</div>
+      <div class="runner-name" onclick="editName(${i})">${escapeHtml(r.name)}</div>
       <div class="runner-start-date">${r.startDate ? 'Started ' + escapeHtml(r.startDate) : ''}</div>
       <div class="card-actions">
         <button class="card-btn yes-btn ${r.status === 'present' ? 'selected' : ''}"
