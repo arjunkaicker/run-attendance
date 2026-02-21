@@ -489,6 +489,10 @@ function initApp() {
   config = JSON.parse(localStorage.getItem('bomf_config') || '{}');
   const roster = JSON.parse(localStorage.getItem('bomf_roster') || '{}');
 
+  // Debug: show what's in storage (remove this once confirmed working)
+  console.log('Config:', JSON.stringify(config).substring(0, 50));
+  console.log('Roster runners:', roster.runners ? roster.runners.length : 0);
+
   if (roster.runners && roster.runners.length > 0) {
     runners = roster.runners.map(r => ({ ...r, status: null }));
     showAttendanceView();
